@@ -1,0 +1,18 @@
+#!/bin/bash
+set -x
+
+replace_invalid_characters (){
+  python -c 'import sys;print(sys.argv[1].translate ({ord(c): "-" for c in "!@#$%^&*()[]{};:,/<>?\|`~=_+"}))' "$1"
+}
+
+# Assumptions are existing kubeflow installation is in the kubeflow namespace
+DEFAULT_RUNTIME_FILE=$(jupyter --data-dir)/metadata/runtimes/my_kfp.json
+
+COS_BUCKET=$(replace_invalid_characters "$COS_BUCKET")
+export COS_BUCKET=${COS_BUCKET:-default}
+
+# If Kubeflow credentials are not supplied, use default Kubeflow installation credentials
+KF_USERNAME="${KF_USERNAME:=user@example.com}"
+KF_PASSWORD="${KF_PASSWORD:=12341234}"
+
+exec /usr/libexec/s2i/run
