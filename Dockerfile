@@ -1,5 +1,5 @@
 # s2i-lab-trustyai
-FROM quay.io/thoth-station/s2i-generic-data-science-notebook
+FROM quay.io/thoth-station/s2i-minimal-py38-notebook:v0.3.0
 
 USER root
 
