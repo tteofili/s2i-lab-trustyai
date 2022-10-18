@@ -28,5 +28,5 @@ COPY ./s2i/bin/ /usr/libexec/s2i
 RUN yum install -qq -y java-11-openjdk
 
 
-# install TrustyAI python package...
+# install TrustyAI python package
 RUN pip install trustyai
