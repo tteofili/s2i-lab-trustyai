@@ -1,7 +1,16 @@
 # s2i-lab-trustyai
-FROM quay.io/thoth-station/s2i-minimal-py38-notebook:v0.3.0
+FROM quay.io/thoth-station/s2i-generic-data-science-notebook
 
 USER root
+
+# TODO: Set the default CMD for the image
+# CMD ["/usr/libexec/s2i/usage"]
+# install JVM
+RUN yum install -qq -y java-11-openjdk
+
+
+# install TrustyAI python package
+RUN pip install trustyai
 
 # TODO: Put the maintainer name in the image metadata
 # LABEL maintainer="Tommaso Teofili <tommaso.teofili@gmail.com>"
@@ -22,11 +31,3 @@ USER root
 # sets io.openshift.s2i.scripts-url label that way, or update that label
 COPY ./s2i/bin/ /usr/libexec/s2i
 
-# TODO: Set the default CMD for the image
-# CMD ["/usr/libexec/s2i/usage"]
-# install JVM
-RUN yum install -qq -y java-11-openjdk
-
-
-# install TrustyAI python package
-RUN pip install trustyai
