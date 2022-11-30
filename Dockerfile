@@ -10,7 +10,7 @@ RUN yum install -qq -y java-11-openjdk
 
 
 # install TrustyAI python package
-RUN pip install trustyai
+RUN pip install trustyai==0.2.7
 
 # TODO: Put the maintainer name in the image metadata
 # LABEL maintainer="Tommaso Teofili <tommaso.teofili@gmail.com>"
