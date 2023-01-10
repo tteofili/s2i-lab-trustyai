@@ -1,8 +1,6 @@
 # s2i-lab-trustyai
 FROM quay.io/thoth-station/s2i-generic-data-science-notebook
 
-USER root
-
 # TODO: Set the default CMD for the image
 # CMD ["/usr/libexec/s2i/usage"]
 # install JVM
@@ -11,6 +9,10 @@ RUN yum install -qq -y java-11-openjdk
 
 # install TrustyAI python package
 RUN pip install trustyai==0.2.8
+
+
+USER root
+
 
 # TODO: Put the maintainer name in the image metadata
 # LABEL maintainer="Tommaso Teofili <tommaso.teofili@gmail.com>"
